@@ -10,6 +10,7 @@
 #include <linux/limits.h>
 #include <string.h>
 
-
+void error_free(char *error, char *pointer);
+char *prompt(void);
 
 #endif
