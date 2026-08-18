@@ -14,14 +14,6 @@ int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
 
-	if (ac > 1)
-	{
-		if (execve(av[1], av, env) == -1)
-		{
-			perror(p_userInput);
-		}
-		return (0);
-	}
 	while (1)
 	{
 		p_userInput = prompt();

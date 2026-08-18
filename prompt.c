@@ -20,7 +20,7 @@ char *prompt(void)
 		if (interactive)
 			printf("\n");
 		free(p_userInput);
-		exit(1);
+		exit(0);
 	}
 
 	p_newLine = strchr(p_userInput, '\n'); /*Trouve le premier \n et retourne son index*/
