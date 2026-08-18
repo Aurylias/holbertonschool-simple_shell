@@ -39,6 +39,7 @@ char **extracter(char *line)
 	/*Loop through the tokens and add them in the array*/
 	while (token != NULL)
 	{
+		printf("%s\n", token);
 		tokens[i] = strdup(token);
 		if (!tokens[i])
 			return (NULL);

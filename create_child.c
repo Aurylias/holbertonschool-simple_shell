@@ -33,5 +33,6 @@ void create_child(char* p_userInput, char **argv, char **env)
 		wait(&status);
 	}
 
+	free(argv);
 	free(p_userInput);
 }
