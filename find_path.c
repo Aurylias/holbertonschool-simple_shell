@@ -16,6 +16,12 @@ char *find_path(char *filename, char **env)
 	char buffer[PATH_MAX];
 	int i;
 
+	if (strchr(filename, '/'))
+	{
+		if (access(filename, X_OK) == 0)
+			return (strdup(filename));
+		return (NULL);
+	}
 	for (i = 0; env[i]; i++)
 	{
 		if (strncmp(env[i], "PATH=", 5) == 0)
@@ -26,7 +32,8 @@ char *find_path(char *filename, char **env)
 			break;
 		}
 	}
-
+	if (!path)
+		return (NULL);
 	token = strtok(path, ":");
 	while (token)
 	{
@@ -35,12 +42,11 @@ char *find_path(char *filename, char **env)
 		strcat(buffer, filename);
 		if (access(buffer, X_OK) == 0)
 		{
-			printf("%s", buffer);
 			free(path);
 			return (strdup(buffer));
 		}
+		token = strtok(NULL, ":");
 	}
-
 	free(path);
 	return (NULL);
 }
