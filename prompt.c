@@ -11,10 +11,13 @@ char *prompt(void)
 	char *p_userInput = NULL;
 	char *p_newLine = NULL;
 	size_t length = PATH_MAX;
+	int interactive = isatty(STDIN_FILENO);
 
-	printf("->$ ");
+	if (interactive)
+		printf("->$ ");
 	if (getline(&p_userInput, &length, stdin) == -1)
 	{
+		printf("\n");
 		free(p_userInput);
 		exit(1);
 	}

@@ -25,7 +25,7 @@ void create_child(char* p_userInput, char **av, char **env)
 		{
 			perror(p_userInput);
 			free(p_userInput);
-			_exit(127); /*127 - COmmand not found*/
+			_exit(127); /*127 - Command not found, or found but can not be used*/
 		}
 	}
 	else
