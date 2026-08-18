@@ -1,9 +1,9 @@
 #include "simple_shell.h"
 
 /**
-* commandToAv - Get the user command, split it and return a array of token
+* extracter - Get the user command, split it and return a array of token
 *
-* @line: A pointer to the string to split
+* @p_userInput: A pointer to the string to split
 *
 * Return: A poiter to the array of token or NULL on failure
 */
@@ -24,7 +24,7 @@ char **extracter(char *p_userInput)
 	}
 	free(copy);
 
-	if(count == 0)
+	if (count == 0)
 		return (NULL);
 
 	argv = malloc(sizeof(char *) * (count + 1));
