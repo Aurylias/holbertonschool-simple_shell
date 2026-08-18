@@ -23,7 +23,8 @@ char *prompt(void)
 		exit(0);
 	}
 
-	p_newLine = strchr(p_userInput, '\n'); /*Trouve le premier \n et retourne son index*/
+	/*Trouve le premier \n et retourne son index*/
+	p_newLine = strchr(p_userInput, '\n');
 	if (!p_newLine)
 		return (NULL);
 	*p_newLine = '\0';
