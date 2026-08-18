@@ -10,7 +10,9 @@
 #include <linux/limits.h>
 #include <string.h>
 
-void create_child(char *p_userInput, char **argv, char **env);
+void create_child(char **argv, char **env);
 char *prompt(void);
+char **extracter(char *p_userInput);
+void free_argv(char **argv);
 
 #endif
