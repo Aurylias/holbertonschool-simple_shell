@@ -16,8 +16,8 @@ void create_child(char **argv, char **env)
 	command_path = find_path(argv[0], env);
 	if (command_path)
 	{
+		free(argv[0]);
 		argv[0] = command_path;
-		free(command_path);
 
 		childPid = fork();
 		if (childPid == -1)
