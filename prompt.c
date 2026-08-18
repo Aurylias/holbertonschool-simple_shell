@@ -15,8 +15,8 @@ char *prompt(void)
 	printf("->$ ");
 	if (getline(&p_userInput, &length, stdin) == -1)
 	{
-		perror("On getline()");
-		return (NULL);
+		free(p_userInput);
+		exit(1);
 	}
 
 	p_newLine = strchr(p_userInput, '\n'); /*Trouve le premier \n et retourne son index*/

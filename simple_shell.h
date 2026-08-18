@@ -10,7 +10,7 @@
 #include <linux/limits.h>
 #include <string.h>
 
-void error_free(char *error, char *pointer);
+void create_child(char* p_userInput, char **av, char **env);
 char *prompt(void);
 
 #endif

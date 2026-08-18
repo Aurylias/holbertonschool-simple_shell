@@ -12,42 +12,22 @@
 
 int main(int ac, char **av, char **env)
 {
-	pid_t childPid;
 	char *p_userInput = NULL;
-	int status;
 
 	if (ac > 1)
 	{
 		if (execve(av[1], av, env) == -1)
 		{
-			perror("On execve()");
-			return (1);
+			perror(p_userInput);
 		}
 		return (0);
 	}
 	while (1)
 	{
 		p_userInput = prompt();
-
-		childPid = fork();
-		if (childPid == -1)
-		{
-			error_free("On fork()", p_userInput);
-			return (1);
-		}
-		if (childPid == 0)
-		{
-			if (execve(p_userInput, av, env) == -1)
-			{
-				error_free("On execve()", p_userInput);
-				return (1);
-			}
-		}
-		else
-		{
-			wait(&status);
-		}
+		if (p_userInput == NULL || strcmp(p_userInput, "") == 0)
+			continue;
+		create_child(p_userInput, av, env);
 	}
-	free(p_userInput);
 	return (0);
 }
