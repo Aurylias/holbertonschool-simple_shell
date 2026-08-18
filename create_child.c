@@ -3,7 +3,6 @@
 /**
 * create_child - Create a child and run a command in it
 *
-* @p_userInput: The command to run
 * @argv: The list of argument
 * @env: The environment
 */
@@ -12,23 +11,34 @@ void create_child(char **argv, char **env)
 {
 	int status;
 	pid_t childPid;
+	char *command_path = NULL;
 
-	childPid = fork();
-	if (childPid == -1)
+	command_path = find_path(argv[0], env);
+	if (command_path)
 	{
-		perror(argv[0]);
-		return;
-	}
-	if (childPid == 0)
-	{
-		if (execve(argv[0], argv, env) == -1)
+		argv[0] = command_path;
+		free(command_path);
+
+		childPid = fork();
+		if (childPid == -1)
 		{
 			perror(argv[0]);
-			_exit(127); /*127 - Command not found, or found but can not be used*/
+			return;
+		}
+		if (childPid == 0)
+		{
+
+			if (execve(argv[0], argv, env) == -1)
+			{
+				perror(argv[0]);
+				_exit(127); /*127 - Command not found, or found but can not be used*/
+			}
+		}
+		else
+		{
+			wait(&status);
 		}
 	}
 	else
-	{
-		wait(&status);
-	}
+		perror(argv[0]);
 }
