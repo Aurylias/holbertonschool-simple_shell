@@ -10,7 +10,7 @@ void free_argv(char **argv)
 {
 	int i;
 
-	if(!argv)
+	if (!argv)
 		return;
 
 	for (i = 0; argv[i]; i++)
