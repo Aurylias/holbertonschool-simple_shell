@@ -13,16 +13,23 @@
 int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
-	char **argv = {NULL};
+	char **argv = NULL;
 	(void)ac;
 	(void)av;
 
 	while (1)
 	{
 		p_userInput = prompt();
-		if (p_userInput == NULL || strcmp(p_userInput, "") == 0)
+		if (p_userInput == NULL)
 			continue;
-		create_child(p_userInput, argv, env);
+
+		argv = extracter(p_userInput);
+		free(p_userInput);
+		if (!argv)
+			continue;
+
+		create_child(argv, env);
+		free_argv(argv);
 	}
 	return (0);
 }
