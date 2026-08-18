@@ -11,6 +11,7 @@
 #include <string.h>
 
 void create_child(char *p_userInput, char **argv, char **env);
+char **extracter(char *line);
 char *prompt(void);
 
 #endif

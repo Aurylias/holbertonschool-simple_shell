@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
-	char *argv[] = {NULL};
+	char **words = NULL;
 	(void)ac;
 	(void)av;
 
@@ -22,7 +22,8 @@ int main(int ac, char **av, char **env)
 		p_userInput = prompt();
 		if (p_userInput == NULL || strcmp(p_userInput, "") == 0)
 			continue;
-		create_child(p_userInput, argv, env);
+		words = extracter(p_userInput);
+		create_child(words[0], words, env);
 	}
 	return (0);
 }
