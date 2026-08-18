@@ -16,6 +16,9 @@ char **extracter(char *p_userInput)
 	int i = 0, count = 0;
 	char *copy = strdup(p_userInput);
 
+	if (!copy)
+		return (NULL);
+
 	token = strtok(copy, delimiter);
 	while (token)
 	{
