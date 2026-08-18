@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <linux/limits.h>
 #include <string.h>
+#include <errno.h>
 
 void create_child(char **argv, char **env);
 char *prompt(void);
