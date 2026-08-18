@@ -4,11 +4,11 @@
 * create_child - Create a child and run a command in it
 *
 * @p_userInput: The command to run
-* @av: The list of argument
+* @argv: The list of argument
 * @env: The environment
 */
 
-void create_child(char* p_userInput, char **av, char **env)
+void create_child(char* p_userInput, char **argv, char **env)
 {
 	int status;
 	pid_t childPid;
@@ -21,7 +21,7 @@ void create_child(char* p_userInput, char **av, char **env)
 	}
 	if (childPid == 0)
 	{
-		if (execve(p_userInput, av, env) == -1)
+		if (execve(p_userInput, argv, env) == -1)
 		{
 			perror(p_userInput);
 			free(p_userInput);

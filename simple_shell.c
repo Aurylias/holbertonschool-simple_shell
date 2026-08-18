@@ -13,9 +13,9 @@
 int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
+	char *argv[] = {NULL};
 	(void)ac;
 	(void)av;
-	char **argv[] = { NULL };
 
 	while (1)
 	{
