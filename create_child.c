@@ -8,7 +8,7 @@
 * @env: The environment
 */
 
-void create_child(char* p_userInput, char **argv, char **env)
+void create_child(char **argv, char **env)
 {
 	int status;
 	pid_t childPid;
@@ -16,15 +16,14 @@ void create_child(char* p_userInput, char **argv, char **env)
 	childPid = fork();
 	if (childPid == -1)
 	{
-		perror(p_userInput);
+		perror(argv[0]);
 		return;
 	}
 	if (childPid == 0)
 	{
-		if (execve(p_userInput, argv, env) == -1)
+		if (execve(argv[0], argv, env) == -1)
 		{
-			perror(p_userInput);
-			free(p_userInput);
+			perror(argv[0]);
 			_exit(127); /*127 - Command not found, or found but can not be used*/
 		}
 	}
@@ -32,7 +31,4 @@ void create_child(char* p_userInput, char **argv, char **env)
 	{
 		wait(&status);
 	}
-
-	free(argv);
-	free(p_userInput);
 }
