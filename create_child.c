@@ -40,5 +40,8 @@ void create_child(char **argv, char **env)
 		}
 	}
 	else
+	{
+		errno = ENOENT;
 		perror(argv[0]);
+	}
 }
