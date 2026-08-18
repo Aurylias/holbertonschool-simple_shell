@@ -17,7 +17,8 @@ char *prompt(void)
 		printf("->$ ");
 	if (getline(&p_userInput, &length, stdin) == -1)
 	{
-		printf("\n");
+		if (interactive)
+			printf("\n");
 		free(p_userInput);
 		exit(1);
 	}
