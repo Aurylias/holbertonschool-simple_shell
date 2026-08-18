@@ -14,13 +14,15 @@ int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
 	(void)ac;
+	(void)av;
+	char **argv = { NULL };
 
 	while (1)
 	{
 		p_userInput = prompt();
 		if (p_userInput == NULL || strcmp(p_userInput, "") == 0)
 			continue;
-		create_child(p_userInput, av, env);
+		create_child(p_userInput, argv, env);
 	}
 	return (0);
 }
