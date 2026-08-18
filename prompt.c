@@ -25,9 +25,8 @@ char *prompt(void)
 
 	/*Trouve le premier \n et retourne son index*/
 	p_newLine = strchr(p_userInput, '\n');
-	if (!p_newLine)
-		return (NULL);
-	*p_newLine = '\0';
+	if (p_newLine)
+		*p_newLine = '\0';
 
 	return (p_userInput);
 }
