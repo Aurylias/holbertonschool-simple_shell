@@ -3,10 +3,12 @@
 /**
 * prompt - Display the prompt
 *
+* @last_status: Exit status of the last command, used on EOF
+*
 * Return: 1 on success, otherwise 0
 */
 
-char *prompt(void)
+char *prompt(int last_status)
 {
 	char *p_userInput = NULL;
 	char *p_newLine = NULL;
@@ -20,7 +22,7 @@ char *prompt(void)
 		if (interactive)
 			printf("\n");
 		free(p_userInput);
-		exit(0);
+		exit(last_status);
 	}
 
 	/*Trouve le premier \n et retourne son index*/
