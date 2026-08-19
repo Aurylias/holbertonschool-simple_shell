@@ -8,7 +8,7 @@
 * @shell_name: The name of the program
 * @line_number: Current input line number
 *
-* Return : The exit status of the child or the error code on failure
+* Return: The exit status of the child or the error code on failure
 */
 
 int create_child(char **argv, char **env, char *shell_name, int line_number)
