@@ -14,22 +14,24 @@ int main(int ac, char **av, char **env)
 {
 	char *p_userInput = NULL;
 	char **argv = NULL;
+	int last_status = 0, line_number = 0;
 	(void)ac;
 	(void)av;
 
 	while (1)
 	{
-		p_userInput = prompt();
+		p_userInput = prompt(last_status);
 		if (p_userInput == NULL)
 			continue;
+		line_number++;
 
 		argv = extracter(p_userInput);
 		free(p_userInput);
 		if (!argv)
 			continue;
 
-		create_child(argv, env);
+		last_status = create_child(argv, env, argv[0], line_number);
 		free_argv(argv);
 	}
-	return (0);
+	return (last_status);
 }
