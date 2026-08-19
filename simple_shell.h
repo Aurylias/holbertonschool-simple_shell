@@ -16,5 +16,7 @@ char *prompt(int last_status);
 char **extracter(char *p_userInput);
 void free_argv(char **argv);
 char *find_path(char *filename, char **env);
+void exit_shell(int last_status, char *p_userInput);
+void print_env(char **env);
 
 #endif
