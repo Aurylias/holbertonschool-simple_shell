@@ -11,8 +11,8 @@
 #include <string.h>
 #include <errno.h>
 
-void create_child(char **argv, char **env);
-char *prompt(void);
+int create_child(char **argv, char **env, char *shell_name, int line_number);
+char *prompt(int last_status);
 char **extracter(char *p_userInput);
 void free_argv(char **argv);
 char *find_path(char *filename, char **env);
