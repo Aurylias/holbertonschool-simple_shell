@@ -9,7 +9,7 @@ Un shell UNIX minimaliste écrit en C, inspiré de `sh`. Il lit une commande, la
 - si la commande est un builtin (`exit`, `env`), il l'exécute directement dans le processus courant ;
 - sinon, il cherche l'exécutable dans le `PATH`, crée un processus fils avec `fork`, et lance le programme avec `execve`.
 
-Le shell fonctionne aussi bien en mode interactif (avec une invite `->$ `) qu'en mode non-interactif, via un pipe ou un fichier redirigé sur l'entrée standard.
+Le shell fonctionne aussi bien en mode interactif (avec une invite `~/cwd/$ `) qu'en mode non-interactif, via un pipe ou un fichier redirigé sur l'entrée standard.
 
 ## Compilation
 
@@ -25,9 +25,9 @@ Mode interactif :
 
 ```
 $ ./simple_shell
-->$ /bin/ls
+~/cwd/$ /bin/ls
 simple_shell  simple_shell.c  simple_shell.h
-->$ exit
+~/cwd/$ exit
 $
 ```
 
