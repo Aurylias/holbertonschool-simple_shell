@@ -16,7 +16,6 @@ int main(int ac, char **av, char **env)
 	char **argv = NULL;
 	int last_status = 0, line_number = 0;
 	(void)ac;
-	(void)av;
 
 	while (1)
 	{
@@ -30,7 +29,7 @@ int main(int ac, char **av, char **env)
 		if (!argv)
 			continue;
 
-		last_status = create_child(argv, env, argv[0], line_number);
+		last_status = create_child(argv, env, av[0], line_number);
 		free_argv(argv);
 	}
 	return (last_status);
