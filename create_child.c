@@ -5,11 +5,13 @@
 *
 * @argv: The list of argument
 * @env: The environment
+* @shell_name: The name of the program
+* @line_number: Current input line number
 */
 
-void create_child(char **argv, char **env)
+int create_child(char **argv, char **env, char *shell_name, int line_number)
 {
-	int status;
+	int status, exit_status = 0;
 	pid_t childPid;
 	char *command_path = NULL;
 
@@ -22,8 +24,8 @@ void create_child(char **argv, char **env)
 		childPid = fork();
 		if (childPid == -1)
 		{
-			perror(argv[0]);
-			return;
+			perror(shell_name);
+			return (1);
 		}
 		if (childPid == 0)
 		{
@@ -37,11 +39,14 @@ void create_child(char **argv, char **env)
 		else
 		{
 			wait(&status);
+			if (WIFEXITED(status))
+				exit_status = WEXITSTATUS(status);
 		}
 	}
 	else
 	{
-		errno = ENOENT;
-		perror(argv[0]);
+		fprintf(stderr, "%s: %d: %s: not found\n", shell_name, line_number, argv[0]);
+		exit_status = 127;
 	}
+	return (exit_status);
 }
