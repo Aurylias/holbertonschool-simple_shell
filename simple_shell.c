@@ -24,6 +24,17 @@ int main(int ac, char **av, char **env)
 			continue;
 		line_number++;
 
+		if (strcmp(p_userInput, "exit") == 0)
+		{
+			exit_shell(last_status, p_userInput);
+			return (last_status);
+		}
+		if (strcmp(p_userInput, "env") == 0)
+		{
+			print_env(env);
+			free(p_userInput);
+			continue;
+		}
 		argv = extracter(p_userInput);
 		free(p_userInput);
 		if (!argv)
