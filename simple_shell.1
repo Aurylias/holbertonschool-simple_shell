@@ -1,0 +1,98 @@
+.TH SIMPLE_SHELL 1 "August 2026" "simple_shell 1.0" "User Commands"
+.SH NAME
+simple_shell \- a simple UNIX command line interpreter
+.SH SYNOPSIS
+.B simple_shell
+.SH DESCRIPTION
+.B simple_shell
+is a minimalist replica of the standard UNIX shell (sh).
+It reads a line of input from the user, either interactively
+from a terminal or from a non-interactive stream (for example
+a pipe or a script passed on standard input), splits it into
+a command and its arguments, and executes it.
+.PP
+When running interactively,
+.B simple_shell
+displays a prompt showing the last two components of the
+current working directory, followed by
+.BR "$ " ,
+before reading each line of input.
+When input is not a terminal, no prompt is printed.
+.PP
+For each line entered, the shell:
+.IP \(bu 3
+Checks whether the line matches one of the built-in commands
+.RB ( "exit" " or " "env" ).
+.IP \(bu 3
+Otherwise splits the line into tokens (separated by spaces, tabs,
+carriage returns, newlines, or the alert character) to build an
+argument vector.
+.IP \(bu 3
+Searches for the command in the directories listed in the
+.B PATH
+environment variable (or uses the command as-is if it contains a
+.RB \(dq / \(dq ).
+.IP \(bu 3
+Forks a child process and executes the command via
+.BR execve (2),
+waiting for it to complete before returning to the prompt.
+.SH BUILT-IN COMMANDS
+.TP
+.B exit
+Exits the shell, returning the exit status of the last command
+executed.
+.TP
+.B env
+Prints the current environment, one variable per line.
+.SH EXIT STATUS
+.B simple_shell
+exits with the status of the last command it executed.
+If a command cannot be found in the
+.B PATH
+or is not executable, the shell prints an error message of the form
+.RS
+.I shell_name: line_number: command: not found
+.RE
+to standard error and sets the exit status to 127, matching the
+convention used by
+.BR sh (1).
+.SH ENVIRONMENT
+.TP
+.B PATH
+Colon-separated list of directories searched, in order, for the
+executable named in the command. If a command name contains a
+.RB \(dq / \(dq
+character, it is treated as a path and executed directly instead
+of being looked up in
+.BR PATH .
+.SH EXAMPLES
+Start the shell interactively:
+.RS
+.nf
+$ ./simple_shell
+~/home/user$ ls -l
+~/home/user$ env
+~/home/user$ exit
+.fi
+.RE
+.PP
+Run a script of commands non-interactively:
+.RS
+.nf
+$ echo "ls -l" | ./simple_shell
+.fi
+.RE
+.SH BUGS
+.B simple_shell
+does not support pipes, redirection, logical operators
+.RB ( && ", " || ", " ; ),
+comments, or command substitution. Only one command per line is
+supported.
+.SH AUTHOR
+Written by Jean De Foucault-Lebel and Bryce Vermorel as a training project
+reproducing the essential behavior of a UNIX shell.
+.SH SEE ALSO
+.BR sh (1),
+.BR execve (2),
+.BR fork (2),
+.BR wait (2)
