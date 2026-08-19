@@ -55,12 +55,13 @@ char *prompt(int last_status)
 {
 	char *p_userInput = NULL;
 	char *p_newLine = NULL;
-	char *invite_line = get_cwd();
+	char *invite_line = NULL;
 	size_t length = PATH_MAX;
 	int interactive = isatty(STDIN_FILENO);
 
 	if (interactive)
 	{
+		invite_line = get_cwd();
 		printf("%s$ ", invite_line);
 		free(invite_line);
 	}
