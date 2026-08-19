@@ -2,7 +2,7 @@
 
 /**
  * exit_shell - exit the shell
- * 
+ *
  * @last_status: exit status of the last command
  * @p_userInput: pointer to the prompt of the user
  */
@@ -15,7 +15,7 @@ void exit_shell(int last_status, char *p_userInput)
 
 /**
  * print_env - print the environment
- * 
+ *
  * @env: the environment
  */
 
