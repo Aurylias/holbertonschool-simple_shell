@@ -35,15 +35,6 @@ char *find_path(char *filename, char **env)
 	if (!path)
 		return (NULL);
 
-	if (path[0] == '\0')
-	{
-		free(path);
-		strcpy(buffer, "./");
-		strcat(buffer, filename);
-		if (access(buffer, X_OK) == 0)
-			return (strdup(buffer));
-		return (NULL);
-	}
 	token = strtok(path, ":");
 	while (token)
 	{
