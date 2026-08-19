@@ -65,6 +65,7 @@ char *prompt(int last_status)
 		printf("%s$ ", invite_line);
 		free(invite_line);
 	}
+
 	if (getline(&p_userInput, &length, stdin) == -1)
 	{
 		if (interactive)
@@ -73,7 +74,7 @@ char *prompt(int last_status)
 		exit(last_status);
 	}
 
-	/*Trouve le premier \n et retourne son index*/
+	/*Find the first \n and return it's index*/
 	p_newLine = strchr(p_userInput, '\n');
 	if (p_newLine)
 		*p_newLine = '\0';
