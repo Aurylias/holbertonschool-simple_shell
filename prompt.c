@@ -39,6 +39,7 @@ char *get_cwd(void)
 		token = strtok(NULL, "/");
 		i++;
 	}
+	buffer[strlen(buffer) - 1] = '\0';
 
 	return (strdup(buffer));
 }
