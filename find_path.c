@@ -32,7 +32,7 @@ char *find_path(char *filename, char **env)
 			break;
 		}
 	}
-	
+
 	if (!path)
 		return (NULL);
 
