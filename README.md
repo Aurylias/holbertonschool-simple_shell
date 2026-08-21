@@ -19,6 +19,46 @@ Simple Shell is a command line interpreter written in C. It reads a command type
 - How to suspend the execution of a process until one of its children terminates
 - What is EOF / "end-of-file"?
 
+## Allowed functions
+
+- All functions from string.h
+- `access`
+- `chdir`
+- `close`
+- `closedir`
+- `execve`
+- `exit`
+- `_exit`
+- `fflush`
+- `fork`
+- `free`
+- `getcwd`
+- `getline`
+- `getpid`
+- `isatty`
+- `kill`
+- `malloc`
+- `open`
+- `opendir`
+- `perror`
+- `printf`
+- `fprintf`
+- `vfprintf`
+- `sprintf`
+- `putchar`
+- `read`
+- `readdir`
+- `signal`
+- `stat`
+- `lstat`
+- `fstat`
+- `strtok`
+- `wait`
+- `waitpid`
+- `wait3`
+- `wait4`
+- `write`
+
 ## Compilation
 
 The project is compiled with:
