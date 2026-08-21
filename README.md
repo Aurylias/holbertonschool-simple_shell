@@ -27,6 +27,10 @@ The project is compiled with:
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
 ```
 
+## Initial Flowchart
+
+![simple_shell_flowchart](flowchart.png)
+
 ## Usage
 
 ```
